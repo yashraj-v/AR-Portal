@@ -23,24 +23,29 @@ public class Portal : MonoBehaviour
 
     void OnTriggerStay(Collider collider)
     {
-        if(collider.name!="Main Camera")
+        if(collider.tag!="MainCamera")
         {
+            Debug.Log("Not MainCamera");
             return;
         }
 
         //outside the portal
         if(transform.position.z>collider.transform.position.z)
         {
-            foreach(var mat in materials)
+            Debug.Log("Outside Portal");
+            foreach (var mat in materials)
             {
                 mat.SetInt("stest", (int)CompareFunction.Equal);
+                
             }
         }
         //inside
         else
         {
+            Debug.Log("Inside Portal");
             foreach (var mat in materials)
             {
+                
                 mat.SetInt("stest", (int)CompareFunction.NotEqual);
             }
         }
